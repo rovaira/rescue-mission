@@ -12,8 +12,8 @@
 
         <%- @questions.each do |question| -%>
           <tr>
-            <td><%= question.title %></td>
-            <td><%= truncate(question.description, length: 30) %></td>
+            <td><%= link_to question.title, question_path(question.id) %></td>
+            <td><%= truncate(question.description, length: 150) %></td>
             <td>
               <%= link_to 'Delete',
                 '/questions/' + question.to_param,

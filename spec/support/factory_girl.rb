@@ -8,9 +8,7 @@ FactoryGirl.define do
   end
 
   factory :question do
-    sequence(:title) { |n| "Question #{n} "}
-    description "This is a description that is more than 150 characters long."
-
+    title "This is a title over and over again. Hopefully this is 40."
+    description "I wonder when we'll reach 150 characters. It seems like it might take forever.  Why did we not use a shorter limit?  Okay, fine.  We'll keep writing.  Still writing.  What do you think about Breakable Toys?  Do you know what you're doing?  Yay for being more than half way done!"
   end
-
 end
