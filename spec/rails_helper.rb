@@ -11,6 +11,14 @@ require File.join(File.dirname(__FILE__), 'support/factory_girl')
 require 'capybara/rspec'
 # Add additional requires below this line. Rails is not loaded until this point!
 
+# require 'database_cleaner'
+#
+# set :environment, :test
+# set :database, :test
+#
+# Capybara.app = Sinatra::Application
+# ActiveRecord::Base.logger.level = 1
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -53,4 +61,23 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
+
+  # config.filter_run focus: true
+  # config.run_all_when_everything_filtered = true
+  #
+  # config.before(:suite) do
+  #   DatabaseCleaner.clean_with(:truncation)
+  # end
+  #
+  # config.before(:each) do
+  #   DatabaseCleaner.strategy = :transaction
+  # end
+  #
+  # config.before(:each) do
+  #   DatabaseCleaner.start
+  # end
+  #
+  # config.after(:each) do
+  #   DatabaseCleaner.clean
+  # end
 end

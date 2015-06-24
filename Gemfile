@@ -42,6 +42,9 @@ group :development, :test do
 
   # call save_and_open_page
   gem 'launchy'
+
+  # clears test db
+  gem 'database_cleaner'
 end
 
 gem 'orderly', group: [:development, :test]

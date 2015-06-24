@@ -15,11 +15,14 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
     @answer.question = @question
 
-    if @answer.save
-      flash[:notice] = 'Your answer was successfully submitted!'
-      # redirect_to "/questions/#{@answer.question_id}"
-      redirect_to @question
-    else
+    if @answer.valid?
+      @answer.save
+      flash[:notice] = "Your answer was successfully submitted!"
+      redirect_to "/questions/#{@answer.question_id}"
+    elsif @answer.errors.present?
+      @answer.errors.full_messages.each do |error|
+        flash[:notice] = "#{error}"
+      end
       render 'questions/show'
     end
   end

@@ -3,12 +3,11 @@
     <h1><%= @question.title %></h1>
   </div>
 
-  <div class="large-10 offset-2"><%= @question.description %></div>
+  <div class="large-10" id="description"><%= @question.description %></div>
 
 
   <div class="large-12">
     <%= form_for [@question, @answer] do |f| %>
-      <%= f.label "Submit an answer" %>
       <%= f.text_area :answer %>
 
       <%= f.submit "Submit your answer" %>
@@ -17,7 +16,11 @@
 
   <div class="large-10 offset-2">
     <ul>
-
+      <% unless @all_answers.nil? %>
+        <% @all_answers.each do |answer| %>
+          <li> <%= answer.answer %> </li>
+        <% end %>
+      <% end %>
     </ul>
   </div>
 

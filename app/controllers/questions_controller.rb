@@ -6,7 +6,12 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find_by(id: params[:id])
     @answer = Answer.new
-    @all_answers = @question.answers
+
+    if @question.answers
+      @all_answers = @question.answers
+    else
+      render 'question/show'
+    end
 
   end
 
