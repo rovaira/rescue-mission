@@ -9,10 +9,24 @@ So that I can delete duplicate questions
 
 # Acceptance Criteria
 #
-# - I must be able delete a question from the question edit page
-# - I must be able delete a question from the question details page
-# - All answers associated with the question must also be deleted
+# [X] I must be able delete a question from the question edit page
+# [X] I must be able delete a question from the question details page
+# [X] All answers associated with the question must also be deleted
 
+  let(:question) { FactoryGirl.create(:question) }
   scenario 'user goes to question page and clicks delete to erase it from list' do
+    visit edit_question_path(question.id)
+
+    click_button 'Delete Question'
+
+    current_path.should == questions_path
+
+    expect(page).to_not have_content(question.title)
+
+  end
+
+  scenario 'all answers associated with question must also be deleted' do
+
+
   end
 end

@@ -6,8 +6,14 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'shoulda-matchers'
-require File.join(File.dirname(__FILE__), 'support/valid_attribute')
-require File.join(File.dirname(__FILE__), 'support/factory_girl')
+
+# this loop covers lines #14-16
+Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each { |f|
+  require f
+}
+# require File.join(File.dirname(__FILE__), 'support/valid_attribute')
+# require File.join(File.dirname(__FILE__), 'support/factory_girl')
+# require File.join(File.dirname(__FILE__), 'support/matchers/exist_in_db')
 require 'capybara/rspec'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -37,6 +43,7 @@ require 'capybara/rspec'
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
+
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

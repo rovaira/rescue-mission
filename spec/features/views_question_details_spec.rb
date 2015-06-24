@@ -1,4 +1,4 @@
-require 'rails_helper'
+ require 'rails_helper'
 
 feature 'visitor views details of a created question', %Q{
   As a user

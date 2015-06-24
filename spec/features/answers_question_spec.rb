@@ -9,17 +9,12 @@ feature 'user answers a question', %Q{
 } do
   # Acceptance Criteria
   #
-  # - I must be on the question detail page
-  # - I must provide a description that is at least 50 characters long
-  # - I must be presented with errors if I fill out the form incorrectly
+  # [X] I must be on the question detail page
+  # [X] I must provide a description that is at least 50 characters long
+  # [X] I must be presented with errors if I fill out the form incorrectly
   #
 
   let!(:question) { Question.create(title: "T" * 40, description: "D" * 151) }
-
-# change question_id to random # otherwise won't pass uniqueness validation
-# as it's set to be unique w/in the scope of the user_id
-
-  let!(:answer) { Answer.create(answer: "B" * 50, question_id: 2) }
 
   let!(:invalid_answer) { Answer.create(answer: "IA", question_id: question.id) }
 
@@ -27,12 +22,14 @@ feature 'user answers a question', %Q{
 
     visit "questions/#{question.id}"
 
-    fill_in 'answer[answer]', with: answer.answer
+    answer = "B" * 50
 
-    click_button 'Submit your answer'
+    fill_in 'answer[answer]', with: answer
+
+    click_button 'Submit Answer'
 
     expect(page).to have_content("Your answer was successfully submitted!")
-    expect(page).to have_content(answer.answer)
+    expect(page).to have_content(answer)
   end
 
   scenario 'user goes to question detail page and provides an INVALID answer' do
@@ -41,7 +38,7 @@ feature 'user answers a question', %Q{
 
     invalid_answer
 
-    click_button "Submit your answer"
+    click_button "Submit Answer"
 
     invalid_answer.errors.full_messages.each do |error|
       expect(page).to have_content(error)

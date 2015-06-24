@@ -6,13 +6,7 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find_by(id: params[:id])
     @answer = Answer.new
-
-    if @question.answers
-      @all_answers = @question.answers
-    else
-      render 'question/show'
-    end
-
+    @all_answers = @question.answers
   end
 
   def new
@@ -27,6 +21,26 @@ class QuestionsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
+    @question = Question.find(params[:id])
+  end
+
+  def update
+    @question = Question.find(params[:id])
+    if @question.update_attributes(question_params)
+      flash[:notice] = 'Content was successfully edited!'
+      redirect_to @question
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @question = Question.find(params[:id])
+    @question.destroy
+    redirect_to questions_path
   end
 
   protected

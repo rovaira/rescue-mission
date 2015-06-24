@@ -4,15 +4,20 @@
   </div>
 
   <div class="large-10" id="description"><%= @question.description %></div>
-
-
+  <br>
   <div class="large-12">
     <%= form_for [@question, @answer] do |f| %>
       <%= f.text_area :answer %>
 
-      <%= f.submit "Submit your answer" %>
+      <%= f.submit "Submit Answer" %>
     <%- end -%>
+      <%= button_to "Edit Question", edit_question_path(@question.id), method: :get%>
+      <%= button_to "Delete Question", @question, method: :delete, data: {
+        confirm: "Are you sure you want to delete this question?"} %>
   </div>
+
+  <br>
+  <h3>Answers</h3>
 
   <div class="large-10 offset-2">
     <ul>
@@ -23,6 +28,7 @@
       <% end %>
     </ul>
   </div>
+
 
 
 </div>
