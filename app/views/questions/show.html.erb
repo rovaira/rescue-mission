@@ -3,8 +3,23 @@
     <h1><%= @question.title %></h1>
   </div>
 
-    <div class="large-10 offset-2">
-      <%= @question.description %>
-    </div>
+  <div class="large-10 offset-2"><%= @question.description %></div>
+
+
+  <div class="large-12">
+    <%= form_for [@question, @answer] do |f| %>
+      <%= f.label "Submit an answer" %>
+      <%= f.text_area :answer %>
+
+      <%= f.submit "Submit your answer" %>
+    <%- end -%>
+  </div>
+
+  <div class="large-10 offset-2">
+    <ul>
+
+    </ul>
+  </div>
+
 
 </div>

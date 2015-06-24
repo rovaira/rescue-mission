@@ -1,6 +1,6 @@
 <div class="row">
   <div class="large-12">
-    <h1>Questions</h1>
+    <h1>Question</h1>
 
     <%- if !@questions.empty? -%>
       <table>
@@ -13,7 +13,7 @@
         <%- @questions.each do |question| -%>
           <tr>
             <td><%= link_to question.title, question_path(question.id) %></td>
-            <td><%= truncate(question.description, length: 150) %></td>
+            <td><%= truncate(question.description, length: 30) %></td>
             <td>
               <%= link_to 'Delete',
                 '/questions/' + question.to_param,

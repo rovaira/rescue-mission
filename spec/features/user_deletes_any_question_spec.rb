@@ -1,24 +1,18 @@
-require "rails_helper"
+require 'rails_helper'
 
-feature 'visitor deletes a question - sign in or creation does not matter', %Q{
-  As a user
+feature 'user deletes a question - sign in or creation does not matter', %Q{
+As a user
 I want to delete a question
 So that I can delete duplicate questions
 
-Acceptance Criteria
-
-[] I must be able delete a question from the question edit page
-[] I must be able delete a question from the question details page
-[] All answers associated with the question must also be deleted
 } do
 
-scenario 'user deletes a question' do
-    question = FactoryGirl.create(:question)
+# Acceptance Criteria
+#
+# - I must be able delete a question from the question edit page
+# - I must be able delete a question from the question details page
+# - All answers associated with the question must also be deleted
 
-    visit '/questions'
-
-    click_link 'Delete'
-    expect(page).to have_content(question.title)
-    expect(page).to have_content(question.description)
+  scenario 'user goes to question page and clicks delete to erase it from list' do
   end
 end
